@@ -38,10 +38,6 @@ public class Post extends Model {
     @HasOne(of=Thread.class, key="id")
     public String thread;
 
-    @LongBlobColumn()
-    @HasMany(of=Post.class, key="id")
-    public String posts;
-
     public long getId() {
         return id;
     }
@@ -80,13 +76,5 @@ public class Post extends Model {
 
     public void setThread(String thread) {
         this.thread = thread;
-    }
-
-    public String getPosts() {
-        return posts;
-    }
-
-    public void setPosts(String posts) {
-        this.posts = posts;
     }
 }
