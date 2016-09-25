@@ -38,11 +38,11 @@ public class Category extends Model {
 
     @LongBlobColumn()
     @HasOne(of=Forum.class, key="id")
-    public String forum;
+    private String forum;
 
     @LongBlobColumn()
     @HasMany(of=User.class, key="id")
-    public String moderators;
+    private String moderators;
 
     public long getId() {
         return id;

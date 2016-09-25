@@ -1,4 +1,4 @@
-package com.synload.forums.handlers.ws.access;
+package com.synload.forums.handlers.ws.actions.access;
 
 import com.synload.eventsystem.EventPublisher;
 import com.synload.eventsystem.events.RequestEvent;
@@ -10,6 +10,7 @@ import com.synload.forums.models.Session;
 import com.synload.forums.models.User;
 import com.synload.framework.ws.annotations.WSEvent;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +51,7 @@ public class Registration {
                         u.setEmail(email);
                         u.setPassword(User.hash(pass));
                         u.setName(user);
+                        u.setCreated(new Date().getTime());
                         u._insert();
                         EventPublisher.raiseEvent( new Registered(u), true, null);
                         e.getResponse().send(new Success(103, "Account completed registration"));

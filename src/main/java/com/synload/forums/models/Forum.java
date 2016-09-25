@@ -35,7 +35,7 @@ public class Forum extends Model {
 
     @LongBlobColumn()
     @HasMany(of=Category.class, key="id")
-    public String category;
+    private String category;
 
     public long getId() {
         return id;

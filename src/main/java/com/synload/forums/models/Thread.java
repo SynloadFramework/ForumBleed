@@ -28,19 +28,25 @@ public class Thread extends Model {
     @StringColumn(length = 128)
     public String uri;
 
+    @MediumIntegerColumn(length=40)
+    public long created;
+
+    @MediumIntegerColumn(length=40)
+    public long updated;
+
     // Relations
 
     @LongBlobColumn()
     @HasOne(of=Forum.class, key="id")
-    public String forum;
+    private String forum;
 
     @LongBlobColumn()
     @HasOne(of=User.class, key="id")
-    public String user;
+    private String user;
 
     @LongBlobColumn()
     @HasMany(of=Post.class, key="id")
-    public String posts;
+    private String posts;
 
     public String getTitle() {
         return title;
@@ -88,5 +94,21 @@ public class Thread extends Model {
 
     public void setPosts(String posts) {
         this.posts = posts;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public void setCreated(long created) {
+        this.created = created;
+    }
+
+    public long getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(long updated) {
+        this.updated = updated;
     }
 }

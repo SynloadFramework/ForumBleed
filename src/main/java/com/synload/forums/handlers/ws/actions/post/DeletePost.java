@@ -1,10 +1,9 @@
-package com.synload.forums.handlers.ws.post;
+package com.synload.forums.handlers.ws.actions.post;
 
 import com.synload.eventsystem.EventPublisher;
 import com.synload.eventsystem.events.RequestEvent;
 import com.synload.forums.elements.status.Error;
 import com.synload.forums.elements.status.Success;
-import com.synload.forums.events.post.PostCreated;
 import com.synload.forums.events.post.PostDeleted;
 import com.synload.forums.models.Post;
 import com.synload.forums.models.Thread;
@@ -30,6 +29,9 @@ public class DeletePost {
                     List<Post> posts = Post._find(Post.class, "id=?", post).exec(Post.class);
                     if(posts.size()==1) {
                         Post postObj = posts.get(0);
+
+                        // Permission check here!
+
                         deletePost(postObj); // delete post
                         e.getResponse().send(new Success(105, "Post deleted"));
                         EventPublisher.raiseEvent( new PostDeleted(postObj), true, null);

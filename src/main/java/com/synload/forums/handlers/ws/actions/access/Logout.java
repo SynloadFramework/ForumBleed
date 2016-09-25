@@ -1,4 +1,4 @@
-package com.synload.forums.handlers.ws.access;
+package com.synload.forums.handlers.ws.actions.access;
 
 import com.synload.eventsystem.EventPublisher;
 import com.synload.eventsystem.events.RequestEvent;

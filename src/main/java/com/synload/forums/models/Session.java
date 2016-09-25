@@ -28,11 +28,17 @@ public class Session extends Model {
     @StringColumn(length = 15)
     public String ip;
 
+    @MediumIntegerColumn(length=40)
+    public long created;
+
+    @MediumIntegerColumn(length=40)
+    public long updated;
+
     // Relations
 
     @LongBlobColumn()
     @HasOne(of=User.class, key="id")
-    public String user;
+    private String user;
 
     public long getId() {
         return id;
@@ -64,5 +70,21 @@ public class Session extends Model {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public void setCreated(long created) {
+        this.created = created;
+    }
+
+    public long getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(long updated) {
+        this.updated = updated;
     }
 }

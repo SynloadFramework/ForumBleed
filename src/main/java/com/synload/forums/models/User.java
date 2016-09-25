@@ -36,23 +36,29 @@ public class User extends Model {
     @StringColumn(length = 128)
     public String avatar;
 
+    @MediumIntegerColumn(length=40)
+    public long created;
+
+    @MediumIntegerColumn(length=40)
+    public long updated;
+
     // Relations
 
     @LongBlobColumn()
     @HasMany(of=Category.class, key="id")
-    public String moderates;
+    private String moderates;
 
     @LongBlobColumn()
     @HasMany(of=Thread.class, key="id")
-    public String threads;
+    private String threads;
 
     @LongBlobColumn()
     @HasMany(of=Post.class, key="id")
-    public String posts;
+    private String posts;
 
     @LongBlobColumn()
     @HasMany(of=Session.class, key="id")
-    public String sessions;
+    private String sessions;
 
     public static String hash(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -137,5 +143,21 @@ public class User extends Model {
 
     public void setSessions(String sessions) {
         this.sessions = sessions;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public void setCreated(long created) {
+        this.created = created;
+    }
+
+    public long getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(long updated) {
+        this.updated = updated;
     }
 }

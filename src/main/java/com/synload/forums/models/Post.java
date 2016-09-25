@@ -28,15 +28,21 @@ public class Post extends Model {
     @LongBlobColumn()
     public String body;
 
+    @MediumIntegerColumn(length=40)
+    public long created;
+
+    @MediumIntegerColumn(length=40)
+    public long updated;
+
     // Relations
 
     @LongBlobColumn()
     @HasOne(of=User.class, key="id")
-    public String creator;
+    private String creator;
 
     @LongBlobColumn()
     @HasOne(of=Thread.class, key="id")
-    public String thread;
+    private String thread;
 
     public long getId() {
         return id;
@@ -76,5 +82,21 @@ public class Post extends Model {
 
     public void setThread(String thread) {
         this.thread = thread;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public void setCreated(long created) {
+        this.created = created;
+    }
+
+    public long getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(long updated) {
+        this.updated = updated;
     }
 }

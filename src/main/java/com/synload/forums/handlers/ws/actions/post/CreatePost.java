@@ -1,18 +1,17 @@
-package com.synload.forums.handlers.ws.post;
+package com.synload.forums.handlers.ws.actions.post;
 
 import com.synload.eventsystem.EventPublisher;
 import com.synload.eventsystem.events.RequestEvent;
 import com.synload.forums.elements.status.Error;
 import com.synload.forums.elements.status.Success;
 import com.synload.forums.events.post.PostCreated;
-import com.synload.forums.events.user.LoggedIn;
 import com.synload.forums.models.Post;
-import com.synload.forums.models.Session;
 import com.synload.forums.models.Thread;
 import com.synload.forums.models.User;
 import com.synload.forums.utils.access.SessionValidation;
 import com.synload.framework.ws.annotations.WSEvent;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,9 +34,13 @@ public class CreatePost {
                     List<Thread> threads = Thread._find(Thread.class, "id=?", thread).exec(Thread.class);
                     if(threads.size()==1) {
                         Thread threadObj = threads.get(0);
+
+                        // Permission check here!
+
                         Post post = new Post();
                         post.setBody(body);
                         post.setSubject(subject);
+                        post.setCreated(new Date().getTime());
                         post._insert();
                         post._set(threadObj);
                         post._set(user);
