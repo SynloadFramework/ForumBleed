@@ -4,7 +4,7 @@ import com.synload.eventsystem.EventPublisher;
 import com.synload.eventsystem.events.RequestEvent;
 import com.synload.forums.elements.status.Error;
 import com.synload.forums.elements.status.Success;
-import com.synload.forums.events.thread.ThreadCreated;
+import com.synload.forums.events.thread.ThreadDeleted;
 import com.synload.forums.handlers.ws.actions.post.DeletePost;
 import com.synload.forums.models.Category;
 import com.synload.forums.models.Post;
@@ -13,7 +13,6 @@ import com.synload.forums.models.User;
 import com.synload.forums.utils.access.SessionValidation;
 import com.synload.framework.ws.annotations.WSEvent;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,10 +34,10 @@ public class DeleteThread {
 
                         // Permission check here!
 
+                        EventPublisher.raiseEvent( new ThreadDeleted(threadObj), true, null);
                         deleteThread(threadObj, user); // now delete thread
-
                         e.getResponse().send(new Success(107, "Thread deleted"));
-                        EventPublisher.raiseEvent( new ThreadCreated(threadObj), true, null);
+
                     }else{
                         e.getResponse().send(new Error(112, "Thread not found"));
                     }

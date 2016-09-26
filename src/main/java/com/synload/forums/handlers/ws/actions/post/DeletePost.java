@@ -32,9 +32,10 @@ public class DeletePost {
 
                         // Permission check here!
 
+                        EventPublisher.raiseEvent( new PostDeleted(postObj), true, null);
                         deletePost(postObj); // delete post
                         e.getResponse().send(new Success(105, "Post deleted"));
-                        EventPublisher.raiseEvent( new PostDeleted(postObj), true, null);
+
                     }else{
                         e.getResponse().send(new Error(113, "Post not found"));
                     }
