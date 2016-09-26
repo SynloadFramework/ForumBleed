@@ -1,7 +1,7 @@
 Synload Forums Bleeding
 =======================
 
-Forums for 1.4.8.1 of Synload Framework
+Forums for Synload Framework version 1.4.8.1
 ---------------------------------------
 User system, Avatar, Forums thread, post, live update+events
 
