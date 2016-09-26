@@ -37,8 +37,8 @@ public class Thread extends Model {
     // Relations
 
     @LongBlobColumn()
-    @HasOne(of=Forum.class, key="id")
-    private String forum;
+    @HasOne(of=Category.class, key="id")
+    private String category;
 
     @LongBlobColumn()
     @HasOne(of=User.class, key="id")
@@ -72,12 +72,12 @@ public class Thread extends Model {
         this.uri = uri;
     }
 
-    public String getForum() {
-        return forum;
+    public String getCategory() {
+        return category;
     }
 
-    public void setForum(String forum) {
-        this.forum = forum;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getUser() {

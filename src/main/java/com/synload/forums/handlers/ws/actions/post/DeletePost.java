@@ -48,7 +48,7 @@ public class DeletePost {
             e.getResponse().send(new Error(111, "Not logged in"));
         }
     }
-    public void deletePost(Post postObj) throws Exception{
+    public static void deletePost(Post postObj) throws Exception{
         List<User> users = postObj._related(User.class).exec(User.class);
         if(users.size()==1) {
             User user = users.get(0);
